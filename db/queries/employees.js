@@ -3,12 +3,12 @@ import db from "#db/client";
 /** @returns the employee created according to the provided details */
 export async function createEmployee({ name, birthday, salary }) {
   const sql = `
-    INSERT INTO employee (name, birthday, salary)
+    INSERT INTO employees (name, birthday, salary)
     VALUES ($1, $2, $3)
     RETURNING *;
-    `; //RETURNING * gives the row back
+  `;
   const { rows } = await db.query(sql, [name, birthday, salary]);
-  return rows[0]; //a single row of the new employee
+  return rows[0];
 }
 
 // === Part 2 ===
